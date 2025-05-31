@@ -1,9 +1,10 @@
 # Intrans
-> A mini app for simulate internal transfer system, build with Golang and Postgre.
+> A mini app for simulate internal transfer system, build with Golang and Postgres.
 
 ## How to
 
 - Prepare the environment variables, copy from `.env.example` and rename to `.env`
+- Run `go mod tidy`
 - Available commands:
 
     ```shell
@@ -40,12 +41,12 @@
 
 ## Features
 - Rest APIs
-- Swagger Documentation
+- Swagger Documentation available at `/docs`
 - Unit tests
 - Dockerize
 
-### Rest APIs
-
-The Swagger available at `/docs`:
-
+### Swagger
 <img src="./Swagger.png">
+
+### Schema
+<img src="./Schema.png">
