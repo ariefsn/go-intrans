@@ -1,0 +1,12 @@
+with-expecter: true
+mockname: "{{.InterfaceName}}Mock"
+filename: "{{.MockName}}.go"
+dir: "mocks/{{.PackageName}}"
+outpkg: "{{.PackageName}}"
+packages:
+  github.com/ariefsn/intrans/entities:
+    interfaces:
+      AccountService:
+      AccountRepository:
+      TransactionService:
+      TransactionRepository:

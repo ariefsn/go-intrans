@@ -1,0 +1,171 @@
+basePath: /
+definitions:
+  entities.AccountCreatePayload:
+    properties:
+      id:
+        type: integer
+      initial_balance:
+        type: number
+    required:
+    - id
+    - initial_balance
+    type: object
+  entities.AccountModel:
+    properties:
+      balance:
+        type: number
+      id:
+        type: integer
+    type: object
+  entities.AccountResponse:
+    properties:
+      data:
+        $ref: '#/definitions/entities.AccountModel'
+      errors:
+        items:
+          type: string
+        type: array
+      message:
+        type: string
+      status:
+        type: boolean
+    type: object
+  entities.TransactionCreatePayload:
+    properties:
+      amount:
+        type: number
+      destination_account_id:
+        type: integer
+      source_account_id:
+        type: integer
+    required:
+    - amount
+    - destination_account_id
+    - source_account_id
+    type: object
+  entities.TransactionModel:
+    properties:
+      amount:
+        type: number
+      createdAt:
+        type: string
+      destination_account_id:
+        type: integer
+      id:
+        type: string
+      source_account_id:
+        type: integer
+    required:
+    - destination_account_id
+    - source_account_id
+    type: object
+  entities.TransactionResponse:
+    properties:
+      data:
+        $ref: '#/definitions/entities.TransactionModel'
+      errors:
+        items:
+          type: string
+        type: array
+      message:
+        type: string
+      status:
+        type: boolean
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: hello@ariefsn.dev
+    name: API Support
+    url: https://ariefsn.dev
+  description: API Transaction server.
+  title: Swagger Transaction API
+  version: "1.0"
+paths:
+  /accounts:
+    post:
+      consumes:
+      - application/json
+      description: Create a new account
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/entities.AccountCreatePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.AccountResponse'
+      summary: Create a new account
+      tags:
+      - Account
+  /accounts/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get account by ID
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.AccountResponse'
+      summary: Get account by ID
+      tags:
+      - Account
+  /transactions:
+    post:
+      consumes:
+      - application/json
+      description: Create a new transaction
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/entities.TransactionCreatePayload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.TransactionResponse'
+      summary: Create a new transaction
+      tags:
+      - Transaction
+  /transactions/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get transaction by ID
+      parameters:
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.TransactionResponse'
+      summary: Get transaction by ID
+      tags:
+      - Transaction
+swagger: "2.0"
